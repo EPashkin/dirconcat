@@ -12,3 +12,10 @@ spec = do
 
     prop "equals the unit value" $
        \ x -> tst == x
+
+  describe "extractNumber" $ do
+    it "returns empty string when no numbers" $
+      extractNumber "Ep." `shouldBe` ""
+
+    it "returns when them present" $
+      extractNumber "Ep. 011" `shouldBe` "011"
