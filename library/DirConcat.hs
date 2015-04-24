@@ -1,11 +1,11 @@
 module DirConcat where
 
-import Data.Char
+import           Data.Char
 
 tst :: () -- ^ The unit type.
 tst = ()
 
-extractNumber:: String -> String
+extractNumber :: String -> String
 extractNumber str = extractNumberT str []
   where extractNumberT::String->String->String
         extractNumberT [] res = reverse res
@@ -14,3 +14,11 @@ extractNumber str = extractNumberT str []
           = extractNumberT xs (x:res)
           | otherwise
           = extractNumberT xs res
+
+prepareSubDirs :: [String] -> Maybe [(String,String)]
+prepareSubDirs l = if allSame lengths then Just pairs else Nothing
+  where
+    genPair s = (s, extractNumber s)
+    pairs = map genPair l
+    lengths = map (\(_, n) -> length n) pairs
+    allSame xs = all (== head xs) (tail xs)
