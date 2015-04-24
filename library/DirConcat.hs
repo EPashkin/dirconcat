@@ -2,9 +2,6 @@ module DirConcat where
 
 import           Data.Char
 
-tst :: () -- ^ The unit type.
-tst = ()
-
 extractNumber :: String -> String
 extractNumber str = extractNumberT str []
   where extractNumberT::String->String->String
