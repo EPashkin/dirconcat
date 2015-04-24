@@ -35,5 +35,8 @@ processSubDirs root pairs = do
 main = do
   dir <- getCurrentDirectory
   dirs <-  getSubDirs dir
-  let pairs = prepareSubDirs dirs
-  maybe (return ()) (processSubDirs dir) pairs
+  case dirs of
+    [] -> return ()
+    dirs -> do
+      let pairs = prepareSubDirs dirs
+      maybe (return ()) (processSubDirs dir) pairs
